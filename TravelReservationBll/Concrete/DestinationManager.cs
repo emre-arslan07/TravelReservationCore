@@ -35,7 +35,7 @@ namespace TravelReservationBll.Concrete
 
         public Destination GetById(int id)
         {
-            throw new NotImplementedException();
+            return _destinationDal.Get(x => x.DestinationID == id);
         }
 
         public void Update(Destination t)
