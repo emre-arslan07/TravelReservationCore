@@ -1,0 +1,18 @@
+﻿using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TravelReservationEntity.Abstract;
+
+namespace TravelReservationEntity.Concrete
+{
+   public class AppUser:IdentityUser<int>,IEntity
+    {
+        public string ImageUrl { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Gender { get; set; }
+    }
+}

@@ -20,6 +20,7 @@ namespace TravelReservationCore.Controllers
         [HttpGet]
         public IActionResult DestinationDetails(int id)
         {
+            ViewBag.Id = id;
             var values = destinationManager.GetById(id);
             return View(values);
         }
