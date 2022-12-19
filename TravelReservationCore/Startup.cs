@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TravelReservationCore.Models;
+using TravelReservationDal.Concrete;
+using TravelReservationEntity.Concrete;
 
 namespace TravelReservationCore
 {
@@ -23,7 +28,22 @@ namespace TravelReservationCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //-------------------------------------------------identity ve dbContext tanýtýlmasý
+            services.AddDbContext<TravelReservationDbContext>();
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<TravelReservationDbContext>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<TravelReservationDbContext>();
+            //-------------------------------------------------
             services.AddControllersWithViews();
+
+            //---------------------------------------------------------proje seviyesi auth
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+            //
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +62,9 @@ namespace TravelReservationCore
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            //---------------------------------
+            app.UseAuthentication();
+            // --------------------------------
             app.UseRouting();
 
             app.UseAuthorization();
@@ -52,6 +75,16 @@ namespace TravelReservationCore
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //----------------------------------------------------------
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+            });
+
         }
     }
 }
