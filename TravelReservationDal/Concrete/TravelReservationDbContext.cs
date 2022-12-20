@@ -27,5 +27,6 @@ namespace TravelReservationDal.Concrete
         public DbSet<SubAbout> SubAbouts { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }
