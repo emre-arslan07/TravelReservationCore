@@ -9,5 +9,8 @@ namespace TravelReservationDal.Abstract
 {
    public interface IReservationDal:IGenericDal<Reservation>
     {
+        List<Reservation> GetListWithReservationByWaitAppoval(int id );
+        List<Reservation> GetListWithReservationByAccepted(int id);
+        List<Reservation> GetListWithReservationByPrevious(int id);
     }
 }

@@ -38,15 +38,30 @@ namespace TravelReservationBll.Concrete
             return _reservationDal.Get(x => x.ReservationID == id);
         }
 
-        public List<Reservation> GetListApprovalReservationByID(int id)
+        public List<Reservation> GetListWithReservationByAccepted(int id)
         {
-            return _reservationDal.GetAll(x => x.AppUserID == id).Where(x=>x.Status=="Onay Bekliyor").ToList();
+            return _reservationDal.GetListWithReservationByAccepted(id);
         }
 
-        public List<Reservation> GetListOldReservationByID(int id)
+        public List<Reservation> GetListWithReservationByPrevious(int id)
         {
-            return _reservationDal.GetAll(x => x.AppUserID == id).Where(x => x.Status == "Geçmiş Rezervasyon").ToList();
+            return _reservationDal.GetListWithReservationByPrevious(id);
         }
+
+        public List<Reservation> GetListWithReservationByWaitAppoval(int id)
+        {
+            return _reservationDal.GetListWithReservationByWaitAppoval(id);
+        }
+
+        //public List<Reservation> GetListApprovalReservationByID(int id)
+        //{
+        //    return _reservationDal.GetAll(x => x.AppUserID == id).Where(x=>x.Status=="Onay Bekliyor").ToList();
+        //}
+
+        //public List<Reservation> GetListOldReservationByID(int id)
+        //{
+        //    return _reservationDal.GetAll(x => x.AppUserID == id).Where(x => x.Status == "Geçmiş Rezervasyon").ToList();
+        //}
 
         public void Update(Reservation t)
         {

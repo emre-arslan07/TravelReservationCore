@@ -9,7 +9,11 @@ namespace TravelReservationBll.Abstract
 {
    public interface IReservationService:IGenericService<Reservation>
     {
-        List<Reservation> GetListApprovalReservationByID(int id);
-        List<Reservation> GetListOldReservationByID(int id);
+        //List<Reservation> GetListApprovalReservationByID(int id);
+        //List<Reservation> GetListOldReservationByID(int id);
+
+        List<Reservation> GetListWithReservationByWaitAppoval(int id);
+        List<Reservation> GetListWithReservationByAccepted(int id);
+        List<Reservation> GetListWithReservationByPrevious(int id);
     }
 }

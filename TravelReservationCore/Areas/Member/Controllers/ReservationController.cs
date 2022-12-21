@@ -23,20 +23,22 @@ namespace TravelReservationCore.Areas.Member.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult MyCurrentReservation()
+        public async  Task<IActionResult> MyCurrentReservation()
         {
-            return View();
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            var valuesList = reservationManager.GetListWithReservationByAccepted(values.Id);
+            return View(valuesList);
         }
         public async Task<IActionResult> MyOldReservation()
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
-            var valuesList = reservationManager.GetListOldReservationByID(values.Id);
+            var valuesList = reservationManager.GetListWithReservationByPrevious(values.Id);
             return View(valuesList);
         }
         public async Task<IActionResult> MyApprovalWaitingReservation()
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
-            var valuesList = reservationManager.GetListApprovalReservationByID(values.Id);
+            var valuesList = reservationManager.GetListWithReservationByWaitAppoval(values.Id);
 
             return View(valuesList);
         }

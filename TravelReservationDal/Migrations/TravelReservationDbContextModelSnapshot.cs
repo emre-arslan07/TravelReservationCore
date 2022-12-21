@@ -492,8 +492,8 @@ namespace TravelReservationDal.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Destination")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DestinationID")
+                        .HasColumnType("int");
 
                     b.Property<string>("PersonCount")
                         .HasColumnType("nvarchar(max)");
@@ -507,6 +507,8 @@ namespace TravelReservationDal.Migrations
                     b.HasKey("ReservationID");
 
                     b.HasIndex("AppUserID");
+
+                    b.HasIndex("DestinationID");
 
                     b.ToTable("Reservations");
                 });
@@ -623,7 +625,15 @@ namespace TravelReservationDal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TravelReservationEntity.Concrete.Destination", "Destination")
+                        .WithMany("Reservations")
+                        .HasForeignKey("DestinationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AppUser");
+
+                    b.Navigation("Destination");
                 });
 
             modelBuilder.Entity("TravelReservationEntity.Concrete.AppUser", b =>
@@ -634,6 +644,8 @@ namespace TravelReservationDal.Migrations
             modelBuilder.Entity("TravelReservationEntity.Concrete.Destination", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }
