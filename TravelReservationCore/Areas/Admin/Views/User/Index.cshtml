@@ -1,0 +1,76 @@
+﻿@using TravelReservationEntity.Concrete
+@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+<h1>Kullanıcılar</h1>
+<table class="table table-bordered" id="users">
+    <tr>
+        <th>#</th>
+        <th>Ad Soyad</th>
+        <th>Kullanıcı Adı</th>
+        <th>Mail</th>
+        <th>Sil</th>
+        <th>Düzenle</th>
+        <th>Yorumlar</th>
+        <th>Tur Geçmişi</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        i++;
+        <tr>
+            <td>@i</td>
+            <td>@item.Name @item.Surname</td>
+            <td>@item.UserName</td>
+            <td>@item.Email</td>
+            <td><a @*href="/Admin/User/DeleteUser/@item.Id"*@ data-id="@item.Id" class="btn btn-outline-danger Delete">Sil</a></td>
+            <td><a href="/Admin/User/EditUser/@item.Id" class="btn btn-outline-success">Düzenle</a></td>
+            <td><a href="/Admin/User/CommentUser/@item.Id" class="btn btn-outline-info">Yorumlar</a></td>
+            <td><a href="/Admin/User/ReservationUser/@item.Id" class="btn btn-outline-secondary">Tur Geçmişi</a></td>
+        </tr>
+    }
+</table>
+<a href="/Login/SignUp/" class="btn btn-outline-primary">Yeni Kullanıcı Ekle</a>
+
+<script>
+    $("#users").on("click", ".Delete", function () {
+        var btn = $(this); //tıklanan butonu yakalar
+        var id = btn.data("id"); //tıklanan datanın id özelliğini getirir
+        Swal.fire({
+            title: 'UYARI!',
+            text: "Bu kullanıcıyı silmek istediğinize emin misiniz?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#5CBA6C',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet',
+            cancelButtonText: 'Hayır'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/User/DeleteUser/" + id,
+                    success: function (s) {
+                        if (s) {
+                            Swal.fire(
+                                'Başarılı!',
+                                'Seçilen Kullanıcı Silindi .',
+                                'success'
+                            )
+                            btn.parent().parent().remove();
+                        }
+                    }
+                });
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire({
+                    icon: 'info',
+                    text: 'Silme işlemi yapılmadı'
+                });
+            }
+        });
+    });
+</script>

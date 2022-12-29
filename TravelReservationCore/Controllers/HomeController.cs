@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using TravelReservationCore.Models;
 
 namespace TravelReservationCore.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,11 +22,22 @@ namespace TravelReservationCore.Controllers
 
         public IActionResult Index()
         {
+            DateTime d =Convert.ToDateTime(DateTime.Now.ToLongDateString());
+            _logger.LogInformation(d+"Index Sayfası Çağrıldı");
+            _logger.LogError("Error log çağrıldır");
             return View();
         }
 
         public IActionResult Privacy()
         {
+            DateTime d = Convert.ToDateTime(DateTime.Now.ToLongDateString());
+            _logger.LogInformation(d+"Privacy Sayfası çağrıldı");
+            return View();
+        }
+        public IActionResult Test()
+        {
+            DateTime d = Convert.ToDateTime(DateTime.Now.ToLongDateString());
+            _logger.LogInformation(d+"Test Sayfası çağrıldı");
             return View();
         }
 

@@ -20,12 +20,12 @@ namespace TravelReservationBll.Concrete
 
         public void Add(Destination t)
         {
-            throw new NotImplementedException();
+            _destinationDal.Insert(t);
         }
 
         public void Delete(Destination t)
         {
-            throw new NotImplementedException();
+            _destinationDal.Delete(t);
         }
 
         public List<Destination> GetAll()
@@ -40,7 +40,7 @@ namespace TravelReservationBll.Concrete
 
         public void Update(Destination t)
         {
-            throw new NotImplementedException();
+            _destinationDal.Update(t);
         }
     }
 }

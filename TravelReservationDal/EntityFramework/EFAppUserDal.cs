@@ -11,14 +11,8 @@ using TravelReservationEntity.Concrete;
 
 namespace TravelReservationDal.EntityFramework
 {
-    public class EFCommentDal : GenericRepository<Comment, TravelReservationDbContext>, ICommentDal
+    public class EFAppUserDal : GenericRepository<AppUser, TravelReservationDbContext>, IAppUserDal
     {
-        public List<Comment> GetListCommentWithDestination()
-        {
-            using(var context=new TravelReservationDbContext())
-            {
-                return context.Comments.Include(x => x.Destination).ToList();
-            }
-        }
+        
     }
 }

@@ -7,9 +7,8 @@ using TravelReservationEntity.Concrete;
 
 namespace TravelReservationBll.Abstract
 {
-   public interface ICommentService:IGenericService<Comment>
+   public interface IAppUserService:IGenericService<AppUser>
     {
-        List<Comment> GetCommentByDestinationId(int id);
-        List<Comment> GetListCommentWithDestination();
+        
     }
 }

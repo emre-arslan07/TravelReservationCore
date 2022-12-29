@@ -43,6 +43,11 @@ namespace TravelReservationBll.Concrete
             return _commentDal.GetAll(x => x.DestinationID == id);
         }
 
+        public List<Comment> GetListCommentWithDestination()
+        {
+            return _commentDal.GetListCommentWithDestination();
+        }
+
         public void Update(Comment t)
         {
             _commentDal.Update(t);
