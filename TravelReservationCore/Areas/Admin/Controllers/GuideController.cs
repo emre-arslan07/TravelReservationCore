@@ -68,9 +68,29 @@ namespace TravelReservationCore.Areas.Admin.Controllers
             _guideService.Update(guide);
             return RedirectToAction("Index");
         }
-        public IActionResult ChangeToTrue(int id)
+        //public IActionResult ChangeToTrue(int id)
+        //{
+        //    return RedirectToAction("Index","Guide",new { area = "Admin" });
+        //}
+        //public IActionResult ChangeToFalse(int id)
+        //{
+        //    return RedirectToAction("Index", "Guide", new { area = "Admin" });
+        //}
+        [Route("ChangeGuideStatus/{id}")]
+        public IActionResult ChangeGuideStatus(int id)
         {
-            return RedirectToAction("Index");
+            var values = _guideService.GetById(id);
+            if (values.Status==true)
+            {
+                values.Status = false;
+                _guideService.Update(values);
+            }
+            else
+            {
+                values.Status = true;
+                _guideService.Update(values);
+            }
+            return RedirectToAction("Index", "Guide", new { area = "Admin" });
         }
     }
 }
