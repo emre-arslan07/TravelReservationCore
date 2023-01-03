@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelReservationBll.Abstract;
 using TravelReservationBll.Concrete;
+using TravelReservationBll.ValidationRules;
 using TravelReservationDal.Abstract;
 using TravelReservationDal.EntityFramework;
+using TravelReservationDTO.DTOs.AnnouncementDTOs;
 
 namespace TravelReservationBll.Container
 {
@@ -32,6 +35,19 @@ namespace TravelReservationBll.Container
 
             services.AddScoped<IExcelService, ExcelManager>();
             services.AddScoped<IPdfService, PdfManager>();
+
+            services.AddScoped<IContactUsService, ContactUsManager>();
+            services.AddScoped<IContactUsDal, EFContactUsDal>();
+            
+            services.AddScoped<IAnnouncementService, AnnouncementManager>();
+            services.AddScoped<IAnnouncementdDal, EFAnnouncementDal>();
+        }
+
+        public static void CustomerValidator(IServiceCollection services)
+        {
+            services.AddTransient<IValidator<AnnouncementAddDTO>, AnnouncementValidator>();
+            services.AddTransient<IValidator<AnnouncementUpdateDTO>, AnnouncementUpdateValidator>();
+
         }
     }
 }

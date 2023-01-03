@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelReservationDal.Concrete;
 
 namespace TravelReservationDal.Migrations
 {
     [DbContext(typeof(TravelReservationDbContext))]
-    partial class TravelReservationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230102140514_add_contactus_status_mig")]
+    partial class add_contactus_status_mig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,27 +174,6 @@ namespace TravelReservationDal.Migrations
                     b.HasKey("About2ID");
 
                     b.ToTable("About2");
-                });
-
-            modelBuilder.Entity("TravelReservationEntity.Concrete.Announcement", b =>
-                {
-                    b.Property<int>("AnnouncementID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AnnouncementID");
-
-                    b.ToTable("Announcements");
                 });
 
             modelBuilder.Entity("TravelReservationEntity.Concrete.AppRole", b =>

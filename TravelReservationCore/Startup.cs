@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,10 +17,12 @@ using System.Threading.Tasks;
 using TravelReservationBll.Abstract;
 using TravelReservationBll.Concrete;
 using TravelReservationBll.Container;
+using TravelReservationBll.ValidationRules;
 using TravelReservationCore.Models;
 using TravelReservationDal.Abstract;
 using TravelReservationDal.Concrete;
 using TravelReservationDal.EntityFramework;
+using TravelReservationDTO.DTOs.AnnouncementDTOs;
 using TravelReservationEntity.Concrete;
 
 namespace TravelReservationCore
@@ -46,10 +50,18 @@ namespace TravelReservationCore
             services.AddDbContext<TravelReservationDbContext>();
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<TravelReservationDbContext>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<TravelReservationDbContext>();
             //-------------------------------------------------
+            services.AddHttpClient();
             ///////////////////////////////////////////////////////
             Extensionss.ContainerDependencies(services);
             //////////////////////////////////////////////////////
 
+            ////7////
+            services.AddAutoMapper(typeof(Startup));
+
+            Extensionss.CustomerValidator(services);
+
+            services.AddControllersWithViews().AddFluentValidation();
+                //////////
             services.AddControllersWithViews();
 
             //---------------------------------------------------------proje seviyesi auth

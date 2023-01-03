@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelReservationDal.Concrete;
 
 namespace TravelReservationDal.Migrations
 {
     [DbContext(typeof(TravelReservationDbContext))]
-    partial class TravelReservationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230102143709_add_Announcement")]
+    partial class add_Announcement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

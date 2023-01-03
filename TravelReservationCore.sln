@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelReservationCore", "TravelReservationCore\TravelReservationCore.csproj", "{9E30A8C9-F81E-46C3-8E34-C89B306EF7B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelReservationCore", "TravelReservationCore\TravelReservationCore.csproj", "{9E30A8C9-F81E-46C3-8E34-C89B306EF7B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelReservationEntity", "TravelReservationEntity\TravelReservationEntity.csproj", "{6A255788-F7A9-412A-92F0-A254878E590F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelReservationEntity", "TravelReservationEntity\TravelReservationEntity.csproj", "{6A255788-F7A9-412A-92F0-A254878E590F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelReservationDal", "TravelReservationDal\TravelReservationDal.csproj", "{5F3CB111-E900-46B7-BEAB-14E074B2A1E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelReservationDal", "TravelReservationDal\TravelReservationDal.csproj", "{5F3CB111-E900-46B7-BEAB-14E074B2A1E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelReservationBll", "TravelReservationBll\TravelReservationBll.csproj", "{B8FB350A-13B3-4A71-BD76-282DDD57F4B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelReservationBll", "TravelReservationBll\TravelReservationBll.csproj", "{B8FB350A-13B3-4A71-BD76-282DDD57F4B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelReservationDTO", "TravelReservationDTO\TravelReservationDTO.csproj", "{52053C64-B935-46F6-A0C3-B020C11365EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelReservationApi", "TravelReservationApi\TravelReservationApi.csproj", "{A087DF58-FBA9-404A-BD7E-3D795CB4AAC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{B8FB350A-13B3-4A71-BD76-282DDD57F4B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8FB350A-13B3-4A71-BD76-282DDD57F4B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8FB350A-13B3-4A71-BD76-282DDD57F4B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52053C64-B935-46F6-A0C3-B020C11365EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52053C64-B935-46F6-A0C3-B020C11365EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52053C64-B935-46F6-A0C3-B020C11365EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52053C64-B935-46F6-A0C3-B020C11365EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A087DF58-FBA9-404A-BD7E-3D795CB4AAC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A087DF58-FBA9-404A-BD7E-3D795CB4AAC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A087DF58-FBA9-404A-BD7E-3D795CB4AAC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A087DF58-FBA9-404A-BD7E-3D795CB4AAC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
