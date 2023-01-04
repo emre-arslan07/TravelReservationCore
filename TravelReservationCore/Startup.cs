@@ -18,6 +18,7 @@ using TravelReservationBll.Abstract;
 using TravelReservationBll.Concrete;
 using TravelReservationBll.Container;
 using TravelReservationBll.ValidationRules;
+using TravelReservationCore.CQRS.Handlers.DestinationHandler;
 using TravelReservationCore.Models;
 using TravelReservationDal.Abstract;
 using TravelReservationDal.Concrete;
@@ -39,7 +40,11 @@ namespace TravelReservationCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //////////
+            services.AddScoped<GetAllDestinationQueryHandler>();
+            services.AddScoped<GetDestinationByIDQueryHandler>();
 
+            /////////
             services.AddLogging(x =>
             {
                 x.ClearProviders();
