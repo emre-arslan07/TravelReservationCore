@@ -6,10 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelReservationBll.Abstract;
+using TravelReservationBll.Abstract.AbstractUnitOfWork;
 using TravelReservationBll.Concrete;
+using TravelReservationBll.Concrete.ConcreteUnitOfWork;
 using TravelReservationBll.ValidationRules;
 using TravelReservationDal.Abstract;
 using TravelReservationDal.EntityFramework;
+using TravelReservationDal.UnitOfWork;
 using TravelReservationDTO.DTOs.AnnouncementDTOs;
 
 namespace TravelReservationBll.Container
@@ -41,6 +44,11 @@ namespace TravelReservationBll.Container
             
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IAnnouncementdDal, EFAnnouncementDal>();
+
+            services.AddScoped<IAccountService, AccountManager>();
+            services.AddScoped<IAccountDal, EFAccountDal>();
+
+            services.AddScoped<IUnitOfWorkDal, UnitOfWorkDal>();
         }
 
         public static void CustomerValidator(IServiceCollection services)

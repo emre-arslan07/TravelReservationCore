@@ -5,8 +5,18 @@
     int i = 1;
 }
 
+@if (ViewBag.Message != null)
+{
+
+   
+    <script>
+        Swal.fire("Başarılı","Silme İşlemi Gerçekleşti",'success')
+    </script>
+
+}
+
 <h1>Duyuru Listesi</h1>
-<table class="table table-bordered">
+<table class="table table-bordered" id="announcement">
     <tr>
         <th>#</th>
         <th>Başlık</th>
@@ -17,15 +27,61 @@
     </tr>
     @foreach (var item in Model)
     {
-<tr>
-    <td>@i</td>
-    <td>@item.Title</td>
-    <td>@item.Content</td>
-    <td><a href="/Admin/Announcement/DeleteAnnouncement/@item.AnnouncementID" class="btn btn-outline-danger">Sil</a></td>
-    <td><a href="/Admin/Announcement/UpdateAnnouncement/@item.AnnouncementID" class="btn btn-outline-dark">Güncelle</a></td>
-    <td><a href="#" class="btn btn-outline-dark">Detaylar</a></td>
-</tr>
+        <tr>
+            <td>@i</td>
+            <td>@item.Title</td>
+            <td>@item.Content</td>
+            @*<td><a href="/Admin/Announcement/DeleteAnnouncement/@item.AnnouncementID" class="btn btn-outline-danger Delete">Sil</a></*@<!--td>-->
+            <td><a data-id="@item.AnnouncementID" class="btn btn-outline-danger Delete">Sil</a></td>
+            <td><a href="/Admin/Announcement/UpdateAnnouncement/@item.AnnouncementID" class="btn btn-outline-dark">Güncelle</a></td>
+            <td><a href="#" class="btn btn-outline-dark">Detaylar</a></td>
+        </tr>
         i++;
     }
 </table>
 <a href="/Admin/Announcement/AddAnnouncement/" class="btn btn-outline-info">Yeni Duyuru Girişi</a>
+
+<script>
+    $("#announcement").on("click", ".Delete", function () {
+        var btn = $(this); //tıklanan butonu yakalar
+        var id = btn.data("id"); //tıklanan datanın id özelliğini getirir
+        //var blogName = btn.data("value");
+        Swal.fire({
+            title: 'UYARI!',
+            text: "Blog yazısını silmek istediğinize emin misiniz?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#5CBA6C',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet',
+            cancelButtonText: 'Hayır'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Announcement/DeleteAnnouncement/" + id,
+                    success: function (s) {
+                        if (s) {
+                            Swal.fire(
+                                'Başarılı!',
+                                'Seçilen Blog Silindi .',
+                                'success'
+                            )
+                            btn.parent().parent().remove();
+                        }
+                    }
+                });
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire({
+                    icon: 'info',
+                    text: 'Silme işlemi yapılmadı'
+                });
+            }
+        });
+    });
+
+
+</script>
+
+

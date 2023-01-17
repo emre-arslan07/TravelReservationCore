@@ -66,11 +66,13 @@ namespace TravelReservationCore.Areas.Admin.Controllers
             }
             return View(dTO);
         }
-
+        [HttpPost]
+        [Route("DeleteAnnouncement/{id}")]
         public IActionResult DeleteAnnouncement(int id)
         {
             var values = _announcementService.GetById(id);
             _announcementService.Delete(values);
+            ViewBag.Message = "";
             return RedirectToAction("Index");
         }
 
