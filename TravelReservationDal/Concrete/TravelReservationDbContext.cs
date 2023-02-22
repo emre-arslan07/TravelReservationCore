@@ -13,7 +13,7 @@ namespace TravelReservationDal.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseSqlServer(@"Server = ASUS-PC\MSSQLSERVER01; Database = TravelReservationDb; uid = admin; pwd = 123456789;");
+            dbContextOptionsBuilder.UseSqlServer(@"Server = ASUS-PC\MSSQLSERVER01; Database = TravelReservationDb; uid = admin; pwd = ea01031994;");
         }
 
         public DbSet<About> About { get; set; }

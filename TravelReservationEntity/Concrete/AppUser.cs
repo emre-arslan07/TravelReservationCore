@@ -16,5 +16,7 @@ namespace TravelReservationEntity.Concrete
         public string Gender { get; set; }
 
         public List<Reservation> Reservations { get; set; }
+        public List<Comment> Comments { get; set; }
+
     }
 }

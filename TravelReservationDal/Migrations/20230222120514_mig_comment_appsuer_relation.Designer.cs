@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelReservationDal.Concrete;
 
 namespace TravelReservationDal.Migrations
 {
     [DbContext(typeof(TravelReservationDbContext))]
-    partial class TravelReservationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230222120514_mig_comment_appsuer_relation")]
+    partial class mig_comment_appsuer_relation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -431,9 +433,6 @@ namespace TravelReservationDal.Migrations
                     b.Property<string>("CoverImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("DayNight")
                         .HasColumnType("nvarchar(max)");
 
@@ -445,9 +444,6 @@ namespace TravelReservationDal.Migrations
 
                     b.Property<string>("Details2")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GuideID")
-                        .HasColumnType("int");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
@@ -462,8 +458,6 @@ namespace TravelReservationDal.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("DestinationID");
-
-                    b.HasIndex("GuideID");
 
                     b.ToTable("Destinations");
                 });
@@ -707,17 +701,6 @@ namespace TravelReservationDal.Migrations
                     b.Navigation("Destination");
                 });
 
-            modelBuilder.Entity("TravelReservationEntity.Concrete.Destination", b =>
-                {
-                    b.HasOne("TravelReservationEntity.Concrete.Guide", "Guide")
-                        .WithMany("Destinations")
-                        .HasForeignKey("GuideID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Guide");
-                });
-
             modelBuilder.Entity("TravelReservationEntity.Concrete.Reservation", b =>
                 {
                     b.HasOne("TravelReservationEntity.Concrete.AppUser", "AppUser")
@@ -749,11 +732,6 @@ namespace TravelReservationDal.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Reservations");
-                });
-
-            modelBuilder.Entity("TravelReservationEntity.Concrete.Guide", b =>
-                {
-                    b.Navigation("Destinations");
                 });
 #pragma warning restore 612, 618
         }

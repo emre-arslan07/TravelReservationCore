@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace TravelReservationCore.Controllers
     public class CommentController : Controller
     {
         CommentManager commentManager = new CommentManager(new EFCommentDal());
+        
+
         [HttpGet]
         public PartialViewResult AddComment()
         {

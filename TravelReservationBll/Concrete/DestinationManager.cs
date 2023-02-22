@@ -38,6 +38,11 @@ namespace TravelReservationBll.Concrete
             return _destinationDal.Get(x => x.DestinationID == id);
         }
 
+        public Destination GetDestinationWithGuide(int id)
+        {
+            return _destinationDal.GetDestinationWithGuide(id);
+        }
+
         public void Update(Destination t)
         {
             _destinationDal.Update(t);

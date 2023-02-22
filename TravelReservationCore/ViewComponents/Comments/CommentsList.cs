@@ -13,7 +13,8 @@ namespace TravelReservationCore.ViewComponents.Comments
         CommentManager commentManager = new CommentManager(new EFCommentDal());
         public IViewComponentResult Invoke(int id)
         {
-            var values = commentManager.GetCommentByDestinationId(id);
+            ViewBag.commentCount = commentManager.GetListCommentWithDestinationAndUser(id).Count();
+            var values = commentManager.GetListCommentWithDestinationAndUser(id);
             return View(values);
         }
     }

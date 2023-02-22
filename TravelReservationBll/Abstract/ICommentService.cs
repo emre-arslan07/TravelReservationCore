@@ -11,5 +11,7 @@ namespace TravelReservationBll.Abstract
     {
         List<Comment> GetCommentByDestinationId(int id);
         List<Comment> GetListCommentWithDestination();
+
+        List<Comment> GetListCommentWithDestinationAndUser(int id);
     }
 }
