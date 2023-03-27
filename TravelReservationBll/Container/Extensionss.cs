@@ -14,6 +14,7 @@ using TravelReservationDal.Abstract;
 using TravelReservationDal.EntityFramework;
 using TravelReservationDal.UnitOfWork;
 using TravelReservationDTO.DTOs.AnnouncementDTOs;
+using TravelReservationDTO.DTOs.ContactDTOs;
 
 namespace TravelReservationBll.Container
 {
@@ -55,6 +56,7 @@ namespace TravelReservationBll.Container
         {
             services.AddTransient<IValidator<AnnouncementAddDTO>, AnnouncementValidator>();
             services.AddTransient<IValidator<AnnouncementUpdateDTO>, AnnouncementUpdateValidator>();
+            services.AddTransient<IValidator<SendMessageDTO>, SendContactUsValidator>();
 
         }
     }

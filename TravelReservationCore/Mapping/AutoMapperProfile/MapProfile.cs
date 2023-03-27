@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TravelReservationDTO.DTOs.AnnouncementDTOs;
 using TravelReservationDTO.DTOs.AppUserDTOs;
+using TravelReservationDTO.DTOs.ContactDTOs;
 using TravelReservationEntity.Concrete;
 
 namespace TravelReservationCore.Mapping.AutoMapperProfile
@@ -27,6 +28,8 @@ namespace TravelReservationCore.Mapping.AutoMapperProfile
 
             CreateMap<AnnouncementUpdateDTO, Announcement>();
             CreateMap<Announcement, AnnouncementUpdateDTO>();
+
+            CreateMap<SendMessageDTO, ContactUs>().ReverseMap();
         }
     }
 }
